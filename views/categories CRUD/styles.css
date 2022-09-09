@@ -1,0 +1,26 @@
+.bg-mynav {
+  background-color: #E2A228;
+}
+
+body {
+  font-size: 1.25rem;
+  background-color: #f6f8fa;
+}
+
+td {
+  line-height: 3rem;
+}
+
+.id-column{
+  width: 100px;
+}
+
+.desc-column{
+  width: 880px;
+}
+
+.navbar-back-btn{
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}

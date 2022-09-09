@@ -1,0 +1,18 @@
+.bg-mynav {
+  background-color: #E2A228;
+}
+
+body {
+  font-size: 1.25rem;
+  background-color: #f6f8fa;
+}
+
+td {
+  line-height: 3rem;
+}
+
+.navbar-back-btn{
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
