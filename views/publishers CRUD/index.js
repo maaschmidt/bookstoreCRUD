@@ -134,12 +134,3 @@ const showPublisherEditBox = async (id) => {
         }
     });
 }
-
-const log = (action) => {
-    action = `PUBLISHER ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

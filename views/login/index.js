@@ -24,12 +24,3 @@ const userValidate = async () => {
 const kidding = () => {
     Swal.fire(`Sorry: Sit down and cry`)
 }
-
-const log = (action) => {
-    action = `${action} LOGGED`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

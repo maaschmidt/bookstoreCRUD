@@ -148,12 +148,3 @@ const validatePassword = () => {
         return false;
     }
 }
-
-const log = (action) => {
-    action = `USER ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

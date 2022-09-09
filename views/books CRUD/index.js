@@ -190,12 +190,3 @@ const showBookEditBox = async (id) => {
         }
     });
 }
-
-const log = (action) => {
-    action = `BOOK ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

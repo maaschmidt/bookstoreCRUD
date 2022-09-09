@@ -133,12 +133,3 @@ const showCityEditBox = async (id) => {
         }
     });
 }
-
-const log = (action) => {
-    action = `CITY ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

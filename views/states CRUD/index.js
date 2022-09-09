@@ -109,12 +109,3 @@ const showStateEditBox = async (id) => {
         }
     });
 }
-
-const log = (action) => {
-    action = `STATE ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}

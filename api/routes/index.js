@@ -6,8 +6,7 @@ const cities = require('./cities');
 const categories = require('./categories');
 const publishers = require('./publishers');
 const books = require('./books');
-const logs = require('./logs');
-const login = require('./login')
+const login = require('./login');
 
 router.use(cors());
 
@@ -17,7 +16,6 @@ router.use(cities);
 router.use(categories);
 router.use(publishers);
 router.use(books);
-router.use(logs);
 router.use(login);
 
 module.exports = router;

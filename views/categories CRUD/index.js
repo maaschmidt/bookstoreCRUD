@@ -102,12 +102,3 @@ const showCategoryEditBox = async (id) => {
         }
     });
 }
-
-const log = (action) => {
-    action = `CATEGORY ${action}`
-
-    axios.post(`${ENDPOINT}/log`, {
-        action: action,
-        date: new Date(),
-    })
-}
