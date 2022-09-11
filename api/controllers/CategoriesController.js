@@ -1,18 +1,18 @@
 const { Op } = require('sequelize');
-const CategorieModel = require('../models/Category');
+const CategoryModel = require('../models/Category');
 const LogsController = require('../controllers/LogsController')
 
 class CategoriesController {
 
   index = async (req, res, next) => {
-    res.json(await CategorieModel.findAll({}));
+    res.json(await CategoryModel.findAll({}));
   }
 
   create = async (req, res, next) => {
     try {
       const data = await this._validateData(req.body);
-      const categorie = await CategorieModel.create(data);
-      res.json(categorie);
+      const category = await CategoryModel.create(data);
+      res.json(category);
       await LogsController.create({action: "CATEGORY ADD", date: new Date()});
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -20,20 +20,20 @@ class CategoriesController {
   }
 
   show = async (req, res, next) => {
-    const categorie = await CategorieModel.findByPk(req.params.categoriesId);
-    res.json(categorie);
+    const category = await CategoriModel.findByPk(req.params.categoriesId);
+    res.json(category);
   }
 
   update = async (req, res, next) => {
     try {
       const id = req.params.categoriesId;
       const data = await this._validateData(req.body, id);
-      await CategorieModel.update(data, {
+      await CategoryModel.update(data, {
         where: {
           id: id
         }
       });
-      res.json(await CategorieModel.findByPk(id));
+      res.json(await CategoryModel.findByPk(id));
       await LogsController.create({action: "CATEGORY UPDATE", date: new Date()});
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -41,7 +41,7 @@ class CategoriesController {
   }
 
   delete = async (req, res, next) => {
-    await CategorieModel.destroy({
+    await CategoryModel.destroy({
       where: {
         id: req.params.categoriesId
       }
@@ -52,19 +52,19 @@ class CategoriesController {
 
   _validateData = async (data, id) => {
     const attributes = ['description'];
-    const categorie = {};
+    const category = {};
     for (const attribute of attributes) {
       if (!data[attribute]) {
         throw new Error(`The attribute "${attribute}" is required.`);
       }
-      categorie[attribute] = data[attribute];
+      category[attribute] = data[attribute];
     }
 
-    if (await this._checkIfDescriptionExists(categorie.description, id)) {
-      throw new Error(`The categorie with description: "${categorie.description}" already exists.`);
+    if (await this._checkIfDescriptionExists(category.description, id)) {
+      throw new Error(`The category with description: "${category.description}" already exists.`);
     }
 
-    return categorie;
+    return category;
   }
 
   _checkIfDescriptionExists = async (description, id) => {
@@ -76,7 +76,7 @@ class CategoriesController {
       where.id = { [Op.ne]: id }; // WHERE id != id
     }
 
-    const count = await CategorieModel.count({
+    const count = await CategoryModel.count({
       where: where
     });
 

@@ -34,7 +34,7 @@ Book.init({
   modelName: 'Book'
 });
 
-Category.hasMany(Book, { foreignKey: 'categories_id' })
+Category.hasMany(Book, {onDelete: 'RESTRICT', onUpdate: 'RESTRICT', foreignKey: 'categories_id' })
 Book.belongsTo(Category, { foreignKey: 'categories_id' })
 
 Publisher.hasMany(Book, {onDelete: 'RESTRICT', onUpdate: 'RESTRICT', foreignKey: 'publishers_id' })

@@ -21,7 +21,7 @@ City.init({
   modelName: 'City'
 });
 
-State.hasMany(City, { foreignKey: 'state_id' })
+State.hasMany(City, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT', foreignKey: 'state_id' })
 City.belongsTo(State, { foreignKey: 'state_id' })
 
 module.exports = City;

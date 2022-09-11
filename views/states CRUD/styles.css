@@ -2,21 +2,53 @@
   background-color: #E2A228;
 }
 
+.navbar-brand{
+  margin-right: auto;
+  margin-left: auto;
+  font-size: xx-large;
+}
+
+.bd-highlight{
+  color: #fff;
+}
+
 body {
   font-size: 1.25rem;
-  background-color: #f6f8fa;
+  background-color: #272727;
+}
+
+.table{
+  border-collapse: unset;
 }
 
 td {
+  color: #fff;
+  background-color: #272727;
   line-height: 3rem;
 }
 
+tr{
+  color: #fff;
+  background-color: #272727;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-radius: 10px;
+}
+
 .name-column{
-  width: 650px;
+  width: auto;
 }
 
 .province-column{
-  width: 300px;
+  width: 100px;
+  text-align: center;
+}
+
+.action-column{
+  text-align: center;
+  width: 130px;
+  right: 0;
 }
 
 .navbar-back-btn{

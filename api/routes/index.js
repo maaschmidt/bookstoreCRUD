@@ -7,6 +7,7 @@ const categories = require('./categories');
 const publishers = require('./publishers');
 const books = require('./books');
 const login = require('./login');
+const format = require('./formats');
 
 router.use(cors());
 
@@ -17,5 +18,6 @@ router.use(categories);
 router.use(publishers);
 router.use(books);
 router.use(login);
+router.use(format);
 
 module.exports = router;

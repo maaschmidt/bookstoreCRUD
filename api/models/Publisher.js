@@ -21,7 +21,7 @@ Publisher.init({
   modelName: 'Publisher'
 });
 
-City.hasMany(Publisher, { foreignKey: 'cities_id' })
+City.hasMany(Publisher, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT', foreignKey: 'cities_id' })
 Publisher.belongsTo(City, { foreignKey: 'cities_id' })
 
 module.exports = Publisher;

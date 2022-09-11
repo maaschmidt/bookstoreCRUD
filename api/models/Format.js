@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../db');
 
-class Category extends Model { };
+class Format extends Model { };
 
-Category.init({
+Format.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -16,8 +16,8 @@ Category.init({
   }
 }, {
   sequelize: db,
-  tableName: 'categories',
-  modelName: 'Category'
+  tableName: 'formats',
+  modelName: 'Format'
 });
 
-module.exports = Category;
+module.exports = Format;
