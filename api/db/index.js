@@ -6,6 +6,6 @@ const db = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, proce
   dialect: process.env.DB_DIALECT
 });
 
-db.sync();
+db.sync( {alter:true} );
 
 module.exports = db;

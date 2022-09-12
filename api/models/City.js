@@ -12,8 +12,13 @@ City.init({
     primaryKey: true
   },
   name: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(45),
     allowNull: false
+  },
+  cep: {
+    type: DataTypes.CHAR(9),
+    allowNull: true, //false
+    // defaultValue: '0000-0000'
   }
 }, {
   sequelize: db,

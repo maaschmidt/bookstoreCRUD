@@ -40,6 +40,10 @@ tbody, td, tfoot, th, thead, tr {
   width: 500px;
 }
 
+.postal-column{
+  width: 7em;
+}
+
 .state-column {
  width: 450px;
 }

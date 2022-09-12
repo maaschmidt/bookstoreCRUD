@@ -2,11 +2,51 @@ const { Op } = require('sequelize');
 const BookModel = require('../models/Book');
 const CategoryModel = require('../models/Category');
 const PublisherModel = require('../models/Publisher');
-const LogsController = require('../controllers/LogsController')
+const FormatModel = require('../models/Format');
+const LogsController = require('../controllers/LogsController');
 
 class BooksController {
 
   index = async (req, res, next) => {
+    const params = req.query;
+    const limit = params.limit || 10;
+    const page = params.page || 1;
+    const offset = (page - 1) * limit;
+    const sort = params.sort || 'id';
+    const order = params.order || 'ASC';
+    const where = {};
+
+    if (params.title) {
+      where.title = {
+        [Op.iLike]: `%${params.title}%`
+      }
+    }
+
+    if (params.author) {
+      where.author = {
+        [Op.iLike]: `%${params.author}%`
+      }
+    }
+
+    // if (params.Category) {
+    //   where.Category = {
+    //     [Op.iLike]: `%${params.Category}%`
+    //   }
+    // }
+
+    if (params.min_price) {
+      where.ticket_value = {
+        [Op.gte]: params.min_price
+      }
+    }
+
+    if (params.max_price) {
+      if (!where.ticket_value) {
+        where.ticket_value = {}
+      }
+      where.ticket_value[Op.lte] = params.max_price;
+    }
+
     const books = await BookModel.findAll({
       include: [{
         model: CategoryModel,
@@ -16,7 +56,15 @@ class BooksController {
         model: PublisherModel,
         required: false,
         attributes: ['name']
-      }]
+      },{
+        model: FormatModel,
+        required: false,
+        attributes: ['description']
+      }],
+      where: where,
+      limit: limit,
+      offset: offset,
+      order: [[sort, order]]
     });
     res.json(books);
   }
@@ -64,7 +112,7 @@ class BooksController {
   }
 
   _validateData = async (data, id) => {
-    const attributes = ['title', 'author', 'publication_year', 'pages', 'categories_id', 'publishers_id'];
+    const attributes = ['title', 'author', 'publication_year', 'pages', 'price', 'categories_id', 'publishers_id', 'formats_id'];
     const book = {};
     for (const attribute of attributes) {
       if (! data[attribute]){
@@ -75,6 +123,9 @@ class BooksController {
         throw new Error(`Publication year unacceptable.`);
       }
       book[attribute] = data[attribute];
+      if (book.price < 0){
+        throw new Error(`Invalid price`);
+      }
     }
     return book;
   }

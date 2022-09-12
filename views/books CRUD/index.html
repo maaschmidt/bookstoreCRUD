@@ -36,16 +36,22 @@
 
     <div class="container">
         <div class="d-flex bd-highlight mb-3">
-            <div class="container">
-            </div>
-            <button onclick="myFunction()" class="dropbtn btn btn-secondary">Sort by
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#base">Price: Low to High</a>
-                    <a href="#base">Price: High to Low</a>
-                    <a href="#blog">Title</a>
-                    <a href="#about">Category</a>
+            <div class="container"></div>            
+            <div class="dropdown">
+                <button onclick="searchFunction()" class="dropbtn btn btn-secondary">Search</button>
+                <div id="searchDropdown" class="dropdown-content">
+                    <input type="text" placeholder="Search with title" id="myInput" onkeyup="filterFunction()">
                 </div>
-            </button>
+            </div>
+            <div class="dropdown">
+                <button onclick="sortFunction()" class="dropbtn btn btn-secondary">Sort by</button>
+                <div id="sortDropdown" class="dropdown-content">
+                    <a onclick="loadTable('?sort=price&order=ASC')">Price: Low to High</a>
+                    <a onclick="loadTable('?sort=price&order=DESC')">Price: High to Low</a>
+                    <a onclick="loadTable('?sort=title&order=ASC')">Title</a>
+                    <a onclick="loadTable()">Category</a>
+                </div>
+            </div>
         </div>
         <div class="table-responsive">
             <table class="table">
@@ -72,6 +78,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
-    </body>
-    
-    </html>
+</body>
+
+</html>

@@ -59,9 +59,28 @@ class StatesController {
       }
       state[attribute] = data[attribute];
     }
+    if (await this._checkIfNameExists(state.name, id)) {
+      throw new Error(`${state.name }" already exists.`);
+    }
+
     return state;
   }
 
-}
+  _checkIfNameExists = async (name, id) => {
+    const where = {
+      name: name
+    };
 
+    if (id) {
+      where.id = { [Op.ne]: id }; // WHERE id != id
+    }
+
+    const count = await StateModel.count({
+      where: where
+    });
+
+    return count > 0;
+  }
+
+}
 module.exports = new StatesController();
