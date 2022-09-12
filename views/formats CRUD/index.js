@@ -1,4 +1,4 @@
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "http://177.44.248.52/bookstore";
 
 const loadTable = () => {
     axios.get(`${ENDPOINT}/formats`)
@@ -84,32 +84,32 @@ const formatDelete = async (id) => {
     });
 };
 
-        const showFormatCreateBox = () => {
-            Swal.fire({
-                title: 'Add format',
-                html:
-                    '<input id="id" type="hidden">' +
-                    '<input id="description" class="swal2-input" placeholder="Description">',
-                focusConfirm: false,
-                showCancelButton: true,
-                preConfirm: () => {
-                    formatCreate();
-                }
-            });
+const showFormatCreateBox = () => {
+    Swal.fire({
+        title: 'Add format',
+        html:
+            '<input id="id" type="hidden">' +
+            '<input id="description" class="swal2-input" placeholder="Description">',
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+            formatCreate();
         }
+    });
+}
 
-        const showFormatEditBox = async (id) => {
-            const formats = await getFormats(id);
-            const data = formats.data;
-            Swal.fire({
-                title: 'Edit Format',
-                html:
-                    '<input id="id" type="hidden" value=' + data.id + '>' +
-                    '<input id="description" class="swal2-input" placeholder="Description" value="' + data.description + '">',
-                focusConfirm: false,
-                showCancelButton: true,
-                preConfirm: () => {
-                    formatEdit();
-                }
-            });
+const showFormatEditBox = async (id) => {
+    const formats = await getFormats(id);
+    const data = formats.data;
+    Swal.fire({
+        title: 'Edit Format',
+        html:
+            '<input id="id" type="hidden" value=' + data.id + '>' +
+            '<input id="description" class="swal2-input" placeholder="Description" value="' + data.description + '">',
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+            formatEdit();
         }
+    });
+}
