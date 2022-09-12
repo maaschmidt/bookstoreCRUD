@@ -13,6 +13,15 @@ body {
   background-color: #272727;
 }
 
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #e2a1286b;
+  border-radius: 20px;
+}
+
 .swal2-container::-webkit-scrollbar {
   width: 7px;
 }
