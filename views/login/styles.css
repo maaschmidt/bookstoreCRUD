@@ -26,6 +26,15 @@
   padding: 10px;
 }
 
+.hexagon i {
+  position: absolute;
+  margin-right: 30px;
+  margin-top: 190px;
+  justify-self: end;
+  cursor: pointer;
+  color: white;
+}
+
 .email-input:focus,
 .password-input:focus {
   box-shadow: 0px 0px 10px 0.2px #fff;
