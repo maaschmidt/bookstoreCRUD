@@ -6,7 +6,27 @@ const LogsController = require('../controllers/LogsController');
 class UsersController {
 
   index = async (req, res, next) => {
-    res.json(await UserModel.findAll({}));
+    const params = req.query;
+    const limit = params.limit || 10;
+    const page = params.page || 1;
+    const offset = (page - 1) * limit;
+    const sort = params.sort || 'id';
+    const order = params.order || 'ASC';
+    const where = {};
+
+    if (params.name) {
+      where.name = {
+        [Op.iLike]: `%${params.name}%`
+      }
+    }
+
+    const users = await UserModel.findAll({
+      where: where,
+      limit: limit,
+      offset: offset,
+      order: [[sort, order]]
+    });
+    res.json(users);
   }
 
   create = async (req, res, next) => {

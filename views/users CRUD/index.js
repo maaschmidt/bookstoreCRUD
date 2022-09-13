@@ -1,7 +1,15 @@
-const ENDPOINT = "http://177.44.248.52/bookstore";
+const ENDPOINT = "http://localhost:3000";
 
-const loadTable = () => {
-    axios.get(`${ENDPOINT}/users`)
+const loadTable = (params) => {
+    if (params) {
+        tableData(params);
+    } else {
+        tableData('');
+    }
+};
+
+const tableData = (params) => {
+    axios.get(`${ENDPOINT}/users${params}`)
         .then((response) => {
             if (response.status === 200) {
                 const data = response.data;
@@ -159,4 +167,9 @@ const validatePassword = () => {
     } else {
         return false;
     }
+}
+
+function filterFunction() {
+    const search = document.getElementById("myInput").value
+    loadTable(`?name=${search}&sort=name&order=ASC`);
 }
