@@ -1,4 +1,4 @@
-const ENDPOINT = "http://177.44.248.52/bookstore";
+const ENDPOINT = "http://localhost:3000";
 
 const loadTable = (params) => {
     if (params) {
@@ -294,6 +294,7 @@ const showBookDetailBox = async (id) => {
         preConfirm: false
     });
 }
+
 function filterFunction() {
     const search = document.getElementById("myInput").value
     loadTable(`?title=${search}&sort=title&order=ASC`);

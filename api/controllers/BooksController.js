@@ -12,8 +12,8 @@ class BooksController {
     const limit = params.limit || 10;
     const page = params.page || 1;
     const offset = (page - 1) * limit;
-    const sort = params.sort || 'id';
-    const order = params.order || 'ASC';
+    let sort = params.sort || 'id';
+    let order = params.order || 'ASC';
     const where = {};
 
     if (params.title) {
@@ -28,12 +28,6 @@ class BooksController {
       }
     }
 
-    // if (params.Category) {
-    //   where.Category = {
-    //     [Op.iLike]: `%${params.Category}%`
-    //   }
-    // }
-
     if (params.min_price) {
       where.ticket_value = {
         [Op.gte]: params.min_price
@@ -45,6 +39,11 @@ class BooksController {
         where.ticket_value = {}
       }
       where.ticket_value[Op.lte] = params.max_price;
+    }
+
+    if(sort == 'Category'){
+      sort = { model: CategoryModel };
+      order =  'description';
     }
 
     const books = await BookModel.findAll({
