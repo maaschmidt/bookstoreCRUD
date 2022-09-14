@@ -1,4 +1,4 @@
-# CRUD bookstore in API com frontend
+# CRUD bookstore in API with frontend
 
 ## How execute
 
