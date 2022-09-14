@@ -49,13 +49,17 @@ class PublishersController {
   }
 
   delete = async (req, res, next) => {
-    await PublisherModel.destroy({
-      where: {
-        id: req.params.publishersId
-      }
-    });
-    res.json({});
-    await LogsController.create({action: "PUBLISHER DELETE", date: new Date()});
+    try {
+      await PublisherModel.destroy({
+        where: {
+          id: req.params.publishersId
+        }
+      });
+      res.json({});
+      await LogsController.create({action: "PUBLISHER DELETE", date: new Date()});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {

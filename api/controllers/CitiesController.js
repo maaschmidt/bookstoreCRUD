@@ -50,13 +50,17 @@ class CitiesController {
   }
 
   delete = async (req, res, next) => {
-    await CityModel.destroy({
-      where: {
-        id: req.params.citiesId
-      }
-    });
-    res.json({});
-    await LogsController.create({ action: "CITY DELETE", date: new Date() });
+    try {
+      await CityModel.destroy({
+        where: {
+          id: req.params.citiesId
+        }
+      });
+      res.json({});
+      await LogsController.create({ action: "CITY DELETE", date: new Date() });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {

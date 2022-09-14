@@ -41,13 +41,17 @@ class FormatsController {
   }
 
   delete = async (req, res, next) => {
-    await FormatModel.destroy({
-      where: {
-        id: req.params.formatsId
-      }
-    });
-    res.json({});
-    await LogsController.create({action: "FORMAT DELETE", date: new Date()});
+    try {
+      await FormatModel.destroy({
+        where: {
+          id: req.params.formatsId
+        }
+      });
+      res.json({});
+      await LogsController.create({action: "FORMAT DELETE", date: new Date()});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {

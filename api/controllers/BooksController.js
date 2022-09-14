@@ -101,13 +101,17 @@ class BooksController {
   }
 
   delete = async (req, res, next) => {
-    await BookModel.destroy({
-      where: {
-        id: req.params.booksId
-      }
-    });
-    res.json({});
-    await LogsController.create({action: "BOOK DELETE", date: new Date()});
+    try {
+      await BookModel.destroy({
+        where: {
+          id: req.params.booksId
+        }
+      });
+      res.json({});
+      await LogsController.create({action: "BOOK DELETE", date: new Date()});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {

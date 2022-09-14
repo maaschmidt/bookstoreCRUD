@@ -63,13 +63,17 @@ class UsersController {
   }
 
   delete = async (req, res, next) => {
-    await UserModel.destroy({
-      where: {
-        id: req.params.userId
-      }
-    });
-    res.json({});
-    await LogsController.create({action: "USER DELETE", date: new Date()});
+    try {
+      await UserModel.destroy({
+        where: {
+          id: req.params.userId
+        }
+      });
+      res.json({});
+      await LogsController.create({action: "USER DELETE", date: new Date()});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {

@@ -41,13 +41,17 @@ class CategoriesController {
   }
 
   delete = async (req, res, next) => {
-    await CategoryModel.destroy({
-      where: {
-        id: req.params.categoriesId
-      }
-    });
-    res.json({});
-    await LogsController.create({action: "CATEGORY DELETE", date: new Date()});
+    try {
+      await CategoryModel.destroy({
+        where: {
+          id: req.params.categoriesId
+        }
+      });
+      res.json({});
+      await LogsController.create({action: "CATEGORY DELETE", date: new Date()});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   _validateData = async (data, id) => {
