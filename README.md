@@ -1,6 +1,6 @@
 # CRUD bookstore in API com frontend
 
-## Como executar
+## How execute
 
 To run this project, the API must be initialized and after frontend execute
 
