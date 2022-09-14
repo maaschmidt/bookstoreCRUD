@@ -1,4 +1,4 @@
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "http://177.44.248.52/bookstore";
 
 const getUsers = () => {
     return axios.get(`${ENDPOINT}/users`);
@@ -15,7 +15,7 @@ const userValidate = async () => {
         data: data.data,
     })
         .then((response) => {
-            window.location.href = "../menu/index.html"
+            window.location.href = "../menu"
         }, () => {
             Swal.fire(` Login error: Email or password are incorrect`)
         });
