@@ -295,7 +295,7 @@ const showBookDetailBox = async (id) => {
     });
 }
 
-function filterFunction() {
+function searchFunction() {
     const search = document.getElementById("myInput").value
     loadTable(`?title=${search}&sort=title&order=ASC`);
 }
