@@ -108,6 +108,7 @@ const showPublisherAddBox = async () => {
             '<input id="id" type="hidden">' +
             '<input id="name" class="swal2-input input-size" placeholder="Name">' +
             '<select id="city_id" class="swal2-input input-size" name="cities">' +
+            '<option value="">City</option>' +
             optionHTML +
             '</select>',
         focusConfirm: false,
