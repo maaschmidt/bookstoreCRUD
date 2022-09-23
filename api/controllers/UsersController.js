@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 const md5 = require('md5')
 const UserModel = require('../models/User');
 const LogsController = require('../controllers/LogsController');
-
+const welcomeEmail = require('../emails/welcome.js')
 class UsersController {
 
   index = async (req, res, next) => {
@@ -35,6 +35,7 @@ class UsersController {
       const data = await this._validateData(req.body);
       const user = await UserModel.create(data);
       await LogsController.create({action: "USER ADD", date: new Date()});
+      welcomeEmail(data);  
       res.json(user);
     } catch (error) {
       res.status(400).json({ error: error.message });
