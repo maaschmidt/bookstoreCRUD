@@ -1,5 +1,15 @@
 const ENDPOINT = "http://localhost:3000";
 
+const verify = async () => {
+    let logado = JSON.parse(localStorage.getItem('logado'))
+  
+    if (logado == null) {
+      window.location.href = '../login'
+      return;
+    }
+  }
+  verify();
+
 const loadTable = (params) => {
     if (params) {
         tableData(params);
